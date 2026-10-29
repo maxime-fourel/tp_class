@@ -249,19 +249,35 @@ class Student:
 
 
 
-# class Classe:
-#     def __init__(self,):
-        
+class Classe:
+    def __init__(self,classname: str):
+        self.classe=classname
 
-#     def add_student(self, student):
-#         self.d={}
-#         self.d[(self.first_name, self.last_name)]=student
-#         return self.d
+    def add_student(self, student : Student):
+        self.d={}
+        self.d[(self.first_name, self.last_name)]=student
+        return self.d
 
-#     def __len__(self):
-#         return len(self)
+    def __len__(self):
+        return len(self)
 
-#     def __repr__(self):
-#         return f"Class({self.classe}, Students :{list(self.d.values())}, Grades: {self.grades}"
+    def __repr__(self):
+        return f"Class({self.classe}, Students :{list(self.d.values())}, Grades: {Student.grades}"
 
+# pour tester
+
+try:
+    classe = Classe("P20")
+    student = Student("Matthieu", "Mazière")
+    classe.add_student(student)
+    if len(classe) != 1:
+        raise Exception('OOPS - There is an issue in your __len__ method.')
+    r = repr(classe)
+    if "P20" not in r or "Matthieu" not in r:
+        raise Exception('OOPS - There is an issue in your __repr__ method.')
+except Exception as e:
+    print("OOPS - Something's wrong")
+    print(f"Error message : {e}")
+else:
+    print('Congrats ! Your implementation works !')
 
