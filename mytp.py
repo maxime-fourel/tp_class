@@ -1,6 +1,8 @@
 # Echauffement 1 
 
 import math
+from collections import defaultdict
+
 class Point: 
 
     def __init__(self,x:float,y:float):
@@ -82,19 +84,43 @@ class Tirelire:
 # t.deposit(0.5)
 # t.deposit(-1)
 
-class Classe:
-    def __init__(self,classname):
-        self.d={}
-        self.classe=classname
 
-    def add_student(self, student):
-        self.d[(student[0],student[1])]={}
-
-        pass
-
-    def __len__(self):
-        return len(self)
+class Student: 
+    def __init__(self, first_name:str, last_name:str):
+        self.grades=defaultdict(list)
+        self.first_name=first_name
+        self.last_name=last_name
 
     def __repr__(self):
-        return f"Class({self.classe}, Students :{list(self.d.keys())}, Grades: {self.d}"
+        return f"Student({self.first_name} {self.last_name}, Grades: {self.grades})"
+
+# pour tester
+
+try:
+    student = Student("Achille", "Talon")
+    r = repr(student)
+    assert isinstance(r, str), "__repr__ must return a str"
+    assert "Achille" in r and "Talon" in r, f"first and last name should appear in {r!r}"
+except Exception as e:
+    print('OOPS - There is an issue in your code.')
+    print(f"Error message : {e}")
+else:
+    print('Congrats ! Your implementation works !')
+
+
+# class Classe:
+#     def __init__(self,):
+        
+
+#     def add_student(self, student):
+#         self.d={}
+#         self.d[(self.first_name, self.last_name)]=student
+#         return self.d
+
+#     def __len__(self):
+#         return len(self)
+
+#     def __repr__(self):
+#         return f"Class({self.classe}, Students :{list(self.d.values())}, Grades: {self.grades}"
+
 
