@@ -82,4 +82,19 @@ class Tirelire:
 # t.deposit(0.5)
 # t.deposit(-1)
 
+class Classe:
+    def __init__(self,classname):
+        self.d={}
+        self.classe=classname
+
+    def add_student(self, student):
+        self.d[(student[0],student[1])]={}
+
+        pass
+
+    def __len__(self):
+        return len(self)
+
+    def __repr__(self):
+        return f"Class({self.classe}, Students :{list(self.d.keys())}, Grades: {self.d}"
 
