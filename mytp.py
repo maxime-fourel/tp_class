@@ -253,19 +253,6 @@ class Classe:
     def __init__(self,classname: str):
         self.classe=classname
         self.d={}
-
-    def load_students_from_file(self, filename: str):
-        self.d={}
-        with open(filename, 'r', encoding='utf-8') as fichier:
-            for line in fichier:
-                first_name=line.strip().split(',')[0]
-                last_name=line.strip().split(',')[1]
-                student=Student(first_name, last_name)
-                self.d[(first_name, last_name)]=student
-        return self.d
-
-    
-
     
     def add_student(self, student : Student):
         self.d[(student.first_name, student.last_name)]=student
@@ -277,7 +264,34 @@ class Classe:
     def get_student(self, first_name:str, last_name:str):
         if (first_name, last_name) in self.d:
             return self.d[(first_name, last_name)]
-        
+
+    def load_students_from_file(self, filename: str):
+            self.d={}
+            with open(filename, 'r', encoding='utf-8') as fichier:
+                for line in fichier:
+                    first_name=line.strip().split(',')[0]
+                    last_name=line.strip().split(',')[1]
+                    student=Student(first_name, last_name)
+                    self.d[(first_name, last_name)]=student
+            return self.d
+
+    def load_grades_from_file(self, filename: str):
+        with open(filename, 'r', encoding='utf-8') as fichier:
+            for line in fichier:
+                parts=line.strip().split(',')
+                first_name=parts[0]
+                last_name=parts[1]
+                if self.get_student(first_name, last_name) is None:
+                    print(f"Student {first_name} {last_name} inconnu")
+                    continue
+                course=parts[2]
+                grade=list(map(float, parts[3:]))
+                student=self.get_student(first_name, last_name)
+                if student is not None:
+                    for i in range(len(grade)):
+                        student.add_grade(course, grade[i])
+        return self.d
+
     def __repr__(self):
         return f"Class({self.classe}, Students :{list(self.d.values())})"
 
@@ -317,12 +331,33 @@ else:
 
 # pour tester
 
+# try:
+#     classe = Classe("P1920")
+#     classe.load_students_from_file('classe.csv')
+#     if len(classe) != 3:
+#         raise Exception('OOPS - There is an issue in your load_students_from_file method')
+#     assert classe.get_student("Enrico", "Fermi") is not None
+# except Exception as e:
+#     print("OOPS - Something's wrong")
+#     print(f"Error message : {e}")
+# else:
+#     print('Congrats ! Your implementation works ! ')
+
+# pour tester
+
+import io
+import contextlib
+
 try:
     classe = Classe("P1920")
     classe.load_students_from_file('classe.csv')
-    if len(classe) != 3:
-        raise Exception('OOPS - There is an issue in your load_students_from_file method')
-    assert classe.get_student("Enrico", "Fermi") is not None
+    buffer = io.StringIO()
+    with contextlib.redirect_stdout(buffer):
+        classe.load_grades_from_file('grades.csv')
+    assert "Personne" in buffer.getvalue(), "no warning printed for the unknown student"
+    assert classe.get_student("Albert", "Einstein").compute_average("Physics") == 15.
+    assert classe.get_student("Albert", "Einstein").compute_average("Mathematics") == 13.
+    assert classe.get_student("Enrico", "Fermi").compute_average("Scubadiving") == 9.5
 except Exception as e:
     print("OOPS - Something's wrong")
     print(f"Error message : {e}")
