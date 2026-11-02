@@ -16,18 +16,18 @@ class Point:
         return f"Point{(self.x,self.y)}"
 
 
-# try:
-#     p = Point(3, 4)
-#     assert (p.x, p.y) == (3, 4)
-#     assert p.norm() == 5.0
-#     assert repr(p) == "Point(3, 4)"
-#     q = Point(0, 1)
-#     assert (q.x, p.x) == (0, 3)
-# except Exception as e:
-#     print("OOPS - Something's wrong")
-#     print(f"Error message : {e}")
-# else:
-#     print('Congrats ! Your implementation works !')
+try:
+    p = Point(3, 4)
+    assert (p.x, p.y) == (3, 4)
+    assert p.norm() == 5.0
+    assert repr(p) == "Point(3, 4)"
+    q = Point(0, 1)
+    assert (q.x, p.x) == (0, 3)
+except Exception as e:
+    print("OOPS - Something's wrong")
+    print(f"Error message : {e}")
+else:
+    print('Congrats ! Your implementation works !')
 
 
 #Réponses : 
@@ -80,28 +80,28 @@ class Tirelire:
         return f"Tirelire({len(self)} coins, total={Tirelire.total(self):.2f})" # .2f force Python à afficher 2 chiffres après la virgule
 
 
-# pour tester : OK ! 
+#pour tester : OK ! 
 
-# try:
-#     t = Tirelire()
-#     t.deposit(0.5)
-#     t.deposit(1)
-#     assert len(t) == 2
-#     assert t.total() == 1.5
-#     assert repr(t) == "Tirelire(2 coins, total=1.50)"
-#     other = Tirelire()
-#     assert len(other) == 0
-#     try:
-#         other.deposit(-1)
-#     except ValueError:
-#         pass
-#     else:
-#         raise Exception("a negative value should raise ValueError")
-# except Exception as e:
-#     print("OOPS - Something's wrong")
-#     print(f"Error message : {e}")
-# else:
-#     print('Congrats ! Your implementation works !')
+try:
+    t = Tirelire()
+    t.deposit(0.5)
+    t.deposit(1)
+    assert len(t) == 2
+    assert t.total() == 1.5
+    assert repr(t) == "Tirelire(2 coins, total=1.50)"
+    other = Tirelire()
+    assert len(other) == 0
+    try:
+        other.deposit(-1)
+    except ValueError:
+        pass
+    else:
+        raise Exception("a negative value should raise ValueError")
+except Exception as e:
+    print("OOPS - Something's wrong")
+    print(f"Error message : {e}")
+else:
+    print('Congrats ! Your implementation works !')
 
 
 
@@ -152,99 +152,100 @@ class Student:
     def __repr__(self):
         return f"Student({self.first_name} {self.last_name}, Grades: {self.grades})"
 
-# pour tester : OK ! 
+#pour tester : OK ! 
 
-# try:
-#     student = Student("Achille", "Talon")
-#     r = repr(student)
-#     assert isinstance(r, str), "__repr__ must return a str"
-#     assert "Achille" in r and "Talon" in r, f"first and last name should appear in {r!r}"
-# except Exception as e:
-#     print('OOPS - There is an issue in your code.')
-#     print(f"Error message : {e}")
-# else:
-#     print('Congrats ! Your implementation works !')
-
-
-# try:
-#     student = Student("Achille", "Talon")
-#     student.add_grade("History", 10.)
-#     student.add_grade("History", 12.)
-#     try:
-#         student.add_grade("History", 25.)
-#     except ValueError:
-#         pass
-#     else:
-#         raise Exception("a grade outside of [0, 20] should raise ValueError")
-# except Exception as e:
-#     print('OOPS - There is an issue in your add_grade method.')
-#     print(f"Error message : {e}")
-# else:
-#     print('Congrats ! Your implementation works !')
+try:
+    student = Student("Achille", "Talon")
+    r = repr(student)
+    assert isinstance(r, str), "__repr__ must return a str"
+    assert "Achille" in r and "Talon" in r, f"first and last name should appear in {r!r}"
+except Exception as e:
+    print('OOPS - There is an issue in your code.')
+    print(f"Error message : {e}")
+else:
+    print('Congrats ! Your implementation works !')
 
 
-# try:
-#     student = Student("Achille", "Talon")
-#     student.add_grade("History", 10.)
-#     topics = student.followed_topics()
-#     if len(topics) != 1 or "History" not in topics:
-#         raise Exception(f"Expecting ['History'] got {topics}")
-# except Exception as e:
-#     print('OOPS - There is an issue in your followed_topics method')
-#     print(f"Error message : {e}")
-# else:
-#     print('Congrats ! Your implementation works !')
+try:
+    student = Student("Achille", "Talon")
+    student.add_grade("History", 10.)
+    student.add_grade("History", 12.)
+    try:
+        student.add_grade("History", 25.)
+    except ValueError:
+        pass
+    else:
+        raise Exception("a grade outside of [0, 20] should raise ValueError")
+except Exception as e:
+    print('OOPS - There is an issue in your add_grade method.')
+    print(f"Error message : {e}")
+else:
+    print('Congrats ! Your implementation works !')
 
 
-# try:
-#     student = Student("Achille", "Talon")
-#     student.add_grade("History", 10.)
-#     student.add_grade("History", 12.)
-#     if (student.compute_average("History") != 11.):
-#         raise Exception("Issue in your average calculation.")
-#     try:
-#         student.compute_average("French")
-#     except ValueError:
-#         pass
-#     else:
-#         raise Exception("If topic is not followed, a ValueError is expected")
-#     if student.followed_topics() != ["History"]:
-#         raise Exception(f"asking for the average of an unfollowed topic must not create it: {student.followed_topics()}")
-# except Exception as e:
-#     print('OOPS - There is an issue in your compute_average method.')
-#     print(f"Error message : {e}")
-# else:
-#     print('Congrats ! Your implementation works !')
+try:
+    student = Student("Achille", "Talon")
+    student.add_grade("History", 10.)
+    topics = student.followed_topics()
+    if len(topics) != 1 or "History" not in topics:
+        raise Exception(f"Expecting ['History'] got {topics}")
+except Exception as e:
+    print('OOPS - There is an issue in your followed_topics method')
+    print(f"Error message : {e}")
+else:
+    print('Congrats ! Your implementation works !')
+
+
+try:
+    student = Student("Achille", "Talon")
+    student.add_grade("History", 10.)
+    student.add_grade("History", 12.)
+    if (student.compute_average("History") != 11.):
+        raise Exception("Issue in your average calculation.")
+    try:
+        student.compute_average("French")
+    except ValueError:
+        pass
+    else:
+        raise Exception("If topic is not followed, a ValueError is expected")
+    if student.followed_topics() != ["History"]:
+        raise Exception(f"asking for the average of an unfollowed topic must not create it: {student.followed_topics()}")
+except Exception as e:
+    print('OOPS - There is an issue in your compute_average method.')
+    print(f"Error message : {e}")
+else:
+    print('Congrats ! Your implementation works !')
 
 
 
-# try:
-#     reference_lines = ['Report for student Albert Einstein',
-#                        '+===============+===============+',
-#                        '|     Topic     |    Average    |',
-#                        '+===============+===============+',
-#                        '|  Mathematics  |     12.80     |',
-#                        '+---------------+---------------+',
-#                        '|  Scubadiving  |     12.50     |',
-#                        '+---------------+---------------+']
+try:
+    reference_lines = ['Report for student Albert Einstein',
+                       '+===============+===============+',
+                       '|     Topic     |    Average    |',
+                       '+===============+===============+',
+                       '|  Mathematics  |     12.80     |',
+                       '+---------------+---------------+',
+                       '|  Scubadiving  |     12.50     |',
+                       '+---------------+---------------+']
 
-#     student = Student("Albert", "Einstein")
-#     student.add_grade("Mathematics", 12.80)
-#     student.add_grade("Scubadiving", 12.50)
-#     report = student.report()
-#     report_lines = report.strip().split('\n')
-#     assert len(report_lines) == len(reference_lines), \
-#         f"expected {len(reference_lines)} lines, got {len(report_lines)}"
-#     for i, (lineref, linestudent) in enumerate(zip(reference_lines, report_lines), start=1):
-#         assert lineref == linestudent, f"Ligne {i} : \n attendu = {lineref}\n  obtenu = {linestudent}"
-# except AssertionError as e:
-#     print("Les deux chaines sont différentes")
-#     print(e)
-# except Exception as e:
-#     print("OOPS - Something's wrong")
-#     print(f"Error message : {e}")
-# else:
-#     print('Congrats ! Your implementation works !')
+    student = Student("Albert", "Einstein")
+    student.add_grade("Mathematics", 12.80)
+    student.add_grade("Scubadiving", 12.50)
+    report = student.report()
+    report_lines = report.strip().split('\n')
+    print(report_lines)
+    assert len(report_lines) == len(reference_lines), \
+        f"expected {len(reference_lines)} lines, got {len(report_lines)}"
+    for i, (lineref, linestudent) in enumerate(zip(reference_lines, report_lines), start=1):
+        assert lineref == linestudent, f"Ligne {i} : \n attendu = {lineref}\n  obtenu = {linestudent}"
+except AssertionError as e:
+    print("Les deux chaines sont différentes")
+    print(e)
+except Exception as e:
+    print("OOPS - Something's wrong")
+    print(f"Error message : {e}")
+else:
+    print('Congrats ! Your implementation works !')
 
 
 
@@ -314,6 +315,23 @@ class Classe:
             self.averages[self.matiere]=sum(self.averages[self.matiere])/self.catalog()[self.matiere]
         return self.averages
 
+    def detailed_report(self, student : Student): #l'ajout du | None faisait apparaitre une erreur de type en cherchant à réaliser l'opération or. 
+        if student is None:
+            print("Student not found in the class.")
+            return None
+        else : 
+            L=[]
+            L.append(f"Detailed Report for student {student.first_name} {student.last_name}")
+            L.append("+===============+===============+===============+")
+            L.append(f"|     Topic     |    Average    |   Class Avg   |")
+            L.append("+===============+===============+===============+")
+            for matiere in student.grades: 
+                avg = student.compute_average(matiere)
+                self.class_avg = self.compute_averages().get(matiere, 0)
+                L.append(f"|{matiere:^15}|{avg:^15.2f}|{self.class_avg:^15.2f}|")
+                L.append("+---------------+---------------+---------------+")
+            self.bulletin="\n".join(L)
+            return self.bulletin
         
     def __repr__(self):
         return f"Class({self.classe}, Students :{list(self.d.values())})"
@@ -395,8 +413,7 @@ try:
     classe = Classe("P1920")
     classe.load_students_from_file('classe.csv')
     classe.load_grades_from_file('grades.csv')
-
-# pour tester : Le test renvoie une erreur de catalogue mais en vérifiant directement dans le document grades.csv, les valeurs correspndent bien. J'ai donc modifié le "true_catalog". 
+#Le test renvoie une erreur de catalogue mais en vérifiant directement dans le document grades.csv, les valeurs correspndent bien. J'ai donc modifié le "true_catalog". 
 
     #true_catalog = {'Physics': 3, 'Mathematics': 2, 'Scubadiving': 1}
     true_catalog = {'Physics': 7, 'English': 1, 'Mathematics': 5, 'Scubadiving': 1, 'Chemistry': 4, 'Astronomy': 2, 'Biology': 2, 'Computer Science': 3}
@@ -406,6 +423,9 @@ except Exception as e:
     print(f"Error message : {e}")
 else:
     print('Congrats ! Your implementation works ! ')
+
+
+
 
 
 # pour tester : à nouveau on a un problèmes de topics dans le "true_averages". Il faudrait calculer autrement les moyennes à la main. 
@@ -423,6 +443,42 @@ else:
 #     avgs = classe.compute_averages()
 #     assert avgs.keys() == true_averages.keys(), f"got topics {list(avgs)}"
 #     assert all(math.isclose(avgs[top], true_averages[top]) for top in true_averages)
+# except Exception as e:
+#     print("OOPS - Something's wrong")
+#     print(f"Error message : {e}")
+# else:
+#     print('Congrats ! Your implementation works ! ')
+
+
+
+
+# pour tester : le test remble être basé sur une autre base de donnée. On affichera seulement le tableau Detailed_report. 
+
+classe = Classe("P1920")
+classe.load_students_from_file('classe.csv')
+classe.load_grades_from_file('grades.csv')
+report_lines = classe.detailed_report(classe.get_student("Albert", "Einstein")).split('\n')
+print(report_lines)
+
+# try:
+#     classe = Classe("P1920")
+#     classe.load_students_from_file('classe.csv')
+#     classe.load_grades_from_file('grades.csv')
+#     reference_lines = ['Detailed Report for student Albert Einstein',
+#                        '+===============+===============+===============+',
+#                        '|     Topic     |    Average    |   Class Avg   |',
+#                        '+===============+===============+===============+',
+#                        '|    Physics    |     15.00     |     14.67     |',
+#                        '+---------------+---------------+---------------+',
+#                        '|  Mathematics  |     13.00     |     14.00     |',
+#                        '+---------------+---------------+---------------+']
+#     report_lines = classe.detailed_report(classe.get_student("Albert", "Einstein")).split('\n')
+#     print(report_lines)
+#     assert len(report_lines) == len(reference_lines), \
+#         f"expected {len(reference_lines)} lines, got {len(report_lines)}"
+#     for i, (lineref, line) in enumerate(zip(reference_lines, report_lines), start=1):
+#         assert lineref == line, f"Ligne {i} : \n attendu = {lineref}\n  obtenu = {line}"
+#     assert classe.detailed_report(None) == "Student not found in the class."
 # except Exception as e:
 #     print("OOPS - Something's wrong")
 #     print(f"Error message : {e}")
